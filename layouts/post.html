@@ -1,0 +1,9 @@
+{% extends 'default.html' %}
+
+{% block content %}
+
+  post.html
+  <time>{{ date | date("Y-m-d") }}</time>
+  {{ contents | safe }}
+
+{% endblock %}
