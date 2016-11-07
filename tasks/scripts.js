@@ -14,8 +14,9 @@ var
   webpack         = require('webpack-stream'),
   wp              = require('webpack')
 ;
+var rev = require('gulp-rev');
 
-var webpackEnabled = true;
+var webpackEnabled = false;
 
 /*
  * gulp lint:scripts -
@@ -51,8 +52,11 @@ gulp.task('make:scripts', function() {
       ))
       .pipe(gulpif(!config.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
+      .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
-      .pipe(gulp.dest(config.paths.build + '/assets/scripts'))
+      .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
+      .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
+      .pipe(gulpif(!config.envDev, gulp.dest('_data')))
       .pipe(browserSync.stream())
     ;
 
@@ -63,8 +67,11 @@ gulp.task('make:scripts', function() {
       .pipe(concat('scripts.js'))
       .pipe(gulpif(!config.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
+      .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
-      .pipe(gulp.dest(config.paths.build + '/assets/scripts'))
+      .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
+      .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
+      .pipe(gulpif(!config.envDev, gulp.dest('_data')))
       .pipe(browserSync.stream())
     ;
   }

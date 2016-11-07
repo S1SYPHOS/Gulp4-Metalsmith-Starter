@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "gulp-memory-cache": "^0.3.0"
+    "fs": "0.0.1-security",
+    "gulp-memory-cache": "^0.3.0",
+    "gulp-rev": "^7.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",

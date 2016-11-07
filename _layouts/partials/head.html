@@ -18,7 +18,8 @@
   {% if envDev %}
   <link href="{{ site.baseurl }}/assets/styles/styles.css" rel="stylesheet" type="text/css"/>
   {% else %}
-  <link href="{{ site.baseurl }}/{{ fingerprint['assets/styles/styles.css'] }}" rel="stylesheet" type="text/css"/>
+  <link href="{{ site.baseurl }}/assets/styles/{{ manifest['styles.css'] }}" rel="stylesheet" type="text/css"/>
+  <!-- <link href="{{ site.baseurl }}/{{ fingerprint['assets/styles/styles.css'] }}" rel="stylesheet" type="text/css"/> -->
   {% endif %}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 

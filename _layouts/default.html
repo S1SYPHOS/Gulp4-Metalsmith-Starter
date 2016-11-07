@@ -23,9 +23,10 @@
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
     {% if envDev %}
-      <script src="/assets/scripts/scripts.js"></script>
+    <script src="{{ site.baseurl }}/assets/scripts/scripts.js"></script>
     {% else %}
-      <script src="/{{ fingerprint['assets/scripts/scripts.js'] }}"></script>
+    <script src="{{ site.baseurl }}/assets/scripts/{{ manifest['scripts.js'] }}"></script>
+    <!-- <script src="/{{ fingerprint['assets/scripts/scripts.js'] }}"></script> -->
     {% endif %}
 
   </body>

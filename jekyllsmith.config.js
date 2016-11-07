@@ -1,4 +1,8 @@
-var envDev      = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production');
+var
+  fs            = require('fs'),
+  manifest      = JSON.parse(fs.readFileSync('_data/manifest.json'))
+  envDev        = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
+;
 
 module.exports = {
   envDev,
@@ -17,11 +21,12 @@ module.exports = {
   },
   metadata: {
     envDev: envDev,
+    manifest: manifest,
     site: {
       title: 'Jekyllsmith',
       tagline: 'Jekyll+Metalsmith',
       description: 'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.',
-      url: 'localhost:3000',
+      url: 'localhost:4000',
       baseurl: '',
       author: 'Itse Me',
       email: 'mail@haha.com',

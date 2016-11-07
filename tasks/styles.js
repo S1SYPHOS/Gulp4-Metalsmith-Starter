@@ -15,7 +15,7 @@ var
   syntax_scss     = require('postcss-scss')
 ;
 
-
+var rev = require('gulp-rev');
 /*
  * gulp lint:styles - lints styles using stylelint (config under stylelint in package.json)
  */
@@ -61,8 +61,11 @@ gulp.task('make:styles', function() {
     ]))
     .pipe(gulpif(!config.envDev, minify()))
     .pipe(size({ gzip: true, showFiles: true }))
+    .pipe(gulpif(!config.envDev, rev()))
     .pipe(gulp.dest(config.assets.build + '/styles'))
-    .pipe(gulp.dest(config.paths.build + '/assets/styles'))
+    .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
+    .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
+    .pipe(gulpif(!config.envDev, gulp.dest('_data')))
     .pipe(browserSync.stream())
   ;
 });

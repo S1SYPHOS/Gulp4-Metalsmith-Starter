@@ -1,20 +1,20 @@
 var
-  config        = require('./jekyllsmith.config'),
-  dates         = require('metalsmith-jekyll-dates'),
-  collections   = require('metalsmith-collections'),
-  excerpts      = require('./_resources/libraries/metalsmith-better-excerpts'),
-  feed          = config.envDev ? null : require('metalsmith-feed-atom'),
-  fingerprint   = config.envDev ? null : require('metalsmith-fingerprint')
-  htmlmin       = config.envDev ? null : require('metalsmith-html-minifier'),
-  inplace       = require('metalsmith-in-place'),
-  layouts       = require('metalsmith-layouts'),
-  markdown      = require('metalsmith-markdown'),
-  metallic      = require('metalsmith-metallic'),
-  metalsmith    = require('metalsmith'),
-  ms            = new metalsmith(process.cwd()),
-  permalinks    = require('metalsmith-permalinks'),
-  related       = require('metalsmith-related'),
-  sitemap       = config.envDev ? null : require('metalsmith-mapsite')
+  config       = require('./jekyllsmith.config'),
+  dates        = require('metalsmith-jekyll-dates'),
+  collections  = require('metalsmith-collections'),
+  excerpts     = require('./_resources/libraries/metalsmith-better-excerpts'),
+  feed         = config.envDev ? null : require('metalsmith-feed-atom'),
+  // fingerprint   = config.envDev ? null : require('metalsmith-fingerprint')
+  htmlmin      = config.envDev ? null : require('metalsmith-html-minifier'),
+  inplace      = require('metalsmith-in-place'),
+  layouts      = require('metalsmith-layouts'),
+  markdown     = require('metalsmith-markdown'),
+  metallic     = require('metalsmith-metallic'),
+  metalsmith   = require('metalsmith'),
+  ms           = new metalsmith(process.cwd()), // only needed with envDev
+  permalinks   = require('metalsmith-permalinks'),
+  related      = require('metalsmith-related'),
+  sitemap      = config.envDev ? null : require('metalsmith-mapsite')
 ;
 
 
@@ -25,11 +25,11 @@ var env = nunjucks.configure('./_layouts', { watch: false });
 dateFilter.setDefaultFormat('DD MMM YYYY');
 env.addFilter('date', dateFilter);
 
-
+// Metalsmith
 ms.metadata(config.metadata)
 ms.source(config.paths.source)
 ms.destination(config.paths.build)
-ms.clean(!config.envDev)
+// ms.clean(!config.envDev) // conflicts with assets created at build dir
 ms.use(dates())
 ms.use(collections({
   posts: {
@@ -54,7 +54,7 @@ ms.use(excerpts({ stripTags: false }))
     pattern: 'posts/:title',
   }]
 }))
-if (!config.envDev) ms.use(fingerprint({ pattern: ['assets/styles/*.css', 'assets/scripts/*.js'] }))
+// if (!config.envDev) ms.use(fingerprint({ pattern: ['assets/styles/*.css', 'assets/scripts/*.js'] }))
 ms.use(layouts({
   engine: 'nunjucks',
   default: 'post.html',
