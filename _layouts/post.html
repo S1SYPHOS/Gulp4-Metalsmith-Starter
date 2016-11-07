@@ -1,0 +1,29 @@
+{% extends 'default.html' %}
+
+{% block content %}
+
+  <div class="post">
+    <h1 class="post-title">{{ title }}</h1>
+    <span class="post-date">{{ date | date }}</span>
+    {{ contents | safe }}
+  </div>
+
+  {% if related %}
+  <div class="related">
+    <h2>Related Posts</h2>
+    <ul class="related-posts">
+      {% for post in related %}
+      <li>
+        <h3>
+          <a href="{{ site.baseurl }}/{{ post.path }}">
+            {{ post.title }}
+          </a>
+          <small>{{ post.date | date }}</small>
+        </h3>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+{% endblock %}
