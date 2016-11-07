@@ -1,22 +1,21 @@
 var
-  // cache         = require('gulp-cached'), // ??
-  // changed       = require('gulp-changed'), // ??
-  browserSync   = require('browser-sync').create(),
-  concat        = require('gulp-concat'),
-  config        = require('../jekyllsmith.config.js'),
-  eslint        = require('gulp-eslint'),
-  gulp          = require('gulp'),
-  gulpif        = require('gulp-if'),
-  gutil         = require('gulp-util'),
-  named         = require('vinyl-named'),
-  plumber       = require('gulp-plumber'),
-  size          = require('gulp-size'),
-  uglify        = require('gulp-uglify'),
-  webpack       = require('webpack-stream'),
-  wp            = require('webpack')
+  browserSync     = require('browser-sync').create(),
+  cache           = require('gulp-memory-cache'),
+  concat          = require('gulp-concat'),
+  config          = require('../jekyllsmith.config'),
+  eslint          = require('gulp-eslint'),
+  gulp            = require('gulp'),
+  gulpif          = require('gulp-if'),
+  gutil           = webpackEnabled ? null : require('gulp-util'),
+  named           = webpackEnabled ? null : require('vinyl-named'),
+  plumber         = require('gulp-plumber'),
+  size            = require('gulp-size'),
+  uglify          = require('gulp-uglify'),
+  webpack         = require('webpack-stream'),
+  wp              = require('webpack')
 ;
 
-var webpackEnabled = false;
+var webpackEnabled = true;
 
 /*
  * gulp lint:scripts -
@@ -42,7 +41,7 @@ gulp.task('make:scripts', function() {
     // Array of used webpack plugins
     // var webpackPlugins = [];
 
-    return gulp.src(config.assets.source + '/scripts/scripts.js')
+    return gulp.src(config.assets.source + '/scripts/scripts.js', { since: cache.lastMtime('webpackJS') })
       .pipe(named())
       .pipe(webpack(config.scripts.webpackConfig,
         null, function(err, stats) {
@@ -59,7 +58,8 @@ gulp.task('make:scripts', function() {
 
   } else {
 
-    return gulp.src(config.assets.source + '/scripts/*.js')
+    return gulp.src(config.assets.source + '/scripts/*.js', { since: cache.lastMtime('concatJS') })
+      .pipe(cache('concatJS'))
       .pipe(concat('scripts.js'))
       .pipe(gulpif(!config.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
@@ -71,6 +71,6 @@ gulp.task('make:scripts', function() {
 });
 
 gulp.task('scripts', gulp.series(
-  'lint:scripts',
-  'make:scripts'
+  'make:scripts',
+  'lint:scripts'
 ));

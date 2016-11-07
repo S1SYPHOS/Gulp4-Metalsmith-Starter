@@ -1,13 +1,12 @@
 var
-  // cache       = require('gulp-cached'), // ??
-  changed     = require('gulp-changed'),
-  config      = require('../jekyllsmith.config.js'),
-  gulp        = require('gulp'),
-  gulpif      = require('gulp-if'),
-  imagemin    = require('gulp-imagemin'),
-  plumber     = require('gulp-plumber'),
-  pngquant    = require('imagemin-pngquant'),
-  size        = require('gulp-size')
+  changed         = require('gulp-changed'),
+  config          = require('../jekyllsmith.config'),
+  gulp            = require('gulp'),
+  gulpif          = require('gulp-if'),
+  imagemin        = require('gulp-imagemin'),
+  plumber         = require('gulp-plumber'),
+  pngquant        = require('imagemin-pngquant'),
+  size            = require('gulp-size')
 ;
 
 
@@ -16,7 +15,7 @@ var
  */
 
 gulp.task('images', function () {
-  return gulp.src(config.assets.source + '/images/**/*.{jpg,png,gif}') // really neccessary?
+  return gulp.src(config.assets.source + '/images/**/*')
     .pipe(plumber())
     .pipe(changed(config.assets.build + '/images'))
     .pipe(imagemin({
@@ -25,5 +24,7 @@ gulp.task('images', function () {
       use: [pngquant()]
     }))
     .pipe(size({ showFiles: true }))
-    .pipe(gulp.dest(config.assets.build + '/images'));
+    .pipe(gulp.dest(config.assets.build + '/images'))
+    .pipe(gulp.dest(config.paths.build + '/assets/images'))
+  ;
 });
