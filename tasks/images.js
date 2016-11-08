@@ -9,7 +9,6 @@ var
   size            = require('gulp-size')
 ;
 
-
 /*
  * gulp images -
  */
@@ -25,6 +24,5 @@ gulp.task('images', function () {
     }))
     .pipe(size({ showFiles: true }))
     .pipe(gulp.dest(config.assets.build + '/images'))
-    .pipe(gulp.dest(config.paths.build + '/assets/images'))
   ;
 });

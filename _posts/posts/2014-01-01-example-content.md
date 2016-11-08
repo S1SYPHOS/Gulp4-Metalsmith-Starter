@@ -22,6 +22,7 @@ HTML defines a long list of available inline tags, a complete list of which can 
 - Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
 - <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
 - Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+- Footnotes are also possible <sup id="1">[1](#fn1)</sup>
 
 Most of these elements are styled by browsers with few modifications on our part.
 
@@ -50,9 +51,9 @@ Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna m
 
 Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
 
-* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-* Donec id elit non mi porta gravida at eget metus.
-* Nulla vitae elit libero, a pharetra augue.
+- Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+- Donec id elit non mi porta gravida at eget metus.
+- Nulla vitae elit libero, a pharetra augue.
 
 Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
 
@@ -79,41 +80,16 @@ Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo r
 
 Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
+Name     | Upvotes  | Downvotes
+---------|----------|----------
+Alice    | 10       | 11
+Bob      |  4       |  3
+Charlie  |  7       |  9
+Totals   | 21       | 23
 
 Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
+
+<b id="fn1">1</b> Beam me up! [↩](#1)
 
 -----
 

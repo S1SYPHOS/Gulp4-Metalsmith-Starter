@@ -17,14 +17,22 @@ var
   sitemap       = config.envDev ? null : require('metalsmith-mapsite')
 ;
 
+/*
+ * Nunjucks - A rich and powerful templating language for JavaScript
+ * For more information, see https://mozilla.github.io/nunjucks/
+ */
 
 var nunjucks = require('nunjucks');
 var dateFilter = require('nunjucks-date-filter');
 var env = nunjucks.configure('./_layouts', { watch: false });
-
 dateFilter.setDefaultFormat('DD MMM YYYY');
 env.addFilter('date', dateFilter);
 
+
+/*
+ * Building Metalsmith - An extremely simple, pluggable static site generator
+ * For more information, see http://www.metalsmith.io/
+ */
 
 ms.metadata(config.metadata)
 ms.source(config.paths.source)
