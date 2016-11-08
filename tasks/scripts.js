@@ -13,7 +13,6 @@ var
   webpack         = require('webpack-stream'),
   wp              = require('webpack')
 ;
-var rev = require('gulp-rev');
 
 /*
  * gulp lint:scripts - lints scripts using eslint (config under eslintConfig in package.json)
@@ -37,14 +36,13 @@ gulp.task('make:scripts', function() {
   if (config.enable.webpack) {
 
     // Array of used webpack plugins
-    // var webpackPlugins = [];
+    var webpackPlugins = [];
 
     return gulp.src(config.assets.source + '/scripts/scripts.js')
       .pipe(named())
       .pipe(webpack(config.scripts.webpack))
       .pipe(gulpif(!config.metadata.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
-      .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
       .pipe(browserSync.stream())
     ;
@@ -56,7 +54,6 @@ gulp.task('make:scripts', function() {
       .pipe(concat('scripts.js'))
       .pipe(gulpif(!config.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
-      .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
       .pipe(browserSync.stream())
     ;
