@@ -6,8 +6,7 @@ var
   eslint          = require('gulp-eslint'),
   gulp            = require('gulp'),
   gulpif          = require('gulp-if'),
-  gutil           = webpackEnabled ? null : require('gulp-util'),
-  named           = webpackEnabled ? null : require('vinyl-named'),
+  named           = require('vinyl-named'),
   plumber         = require('gulp-plumber'),
   size            = require('gulp-size'),
   uglify          = require('gulp-uglify'),
@@ -16,10 +15,8 @@ var
 ;
 var rev = require('gulp-rev');
 
-var webpackEnabled = false;
-
 /*
- * gulp lint:scripts -
+ * gulp lint:scripts - lints scripts using eslint (config under eslintConfig in package.json)
  */
 
 gulp.task('lint:scripts', function() {
@@ -37,26 +34,18 @@ gulp.task('lint:scripts', function() {
 
 gulp.task('make:scripts', function() {
 
-  if (webpackEnabled) {
+  if (config.enable.webpack) {
 
     // Array of used webpack plugins
     // var webpackPlugins = [];
 
-    return gulp.src(config.assets.source + '/scripts/scripts.js', { since: cache.lastMtime('webpackJS') })
+    return gulp.src(config.assets.source + '/scripts/scripts.js')
       .pipe(named())
-      .pipe(webpack(config.scripts.webpackConfig,
-        null, function(err, stats) {
-          if (err) throw new gutil.PluginError('scripts', err);
-          gutil.log(stats.toString(config.scripts.webpackLog));
-        }
-      ))
-      .pipe(gulpif(!config.envDev, uglify()))
+      .pipe(webpack(config.scripts.webpack))
+      .pipe(gulpif(!config.metadata.envDev, uglify()))
       .pipe(size({ gzip: true, showFiles: true }))
       .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
-      .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
-      .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
-      .pipe(gulpif(!config.envDev, gulp.dest('_data')))
       .pipe(browserSync.stream())
     ;
 
@@ -69,15 +58,12 @@ gulp.task('make:scripts', function() {
       .pipe(size({ gzip: true, showFiles: true }))
       .pipe(gulpif(!config.envDev, rev()))
       .pipe(gulp.dest(config.assets.build + '/scripts'))
-      .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
-      .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
-      .pipe(gulpif(!config.envDev, gulp.dest('_data')))
       .pipe(browserSync.stream())
     ;
   }
 });
 
 gulp.task('scripts', gulp.series(
-  'make:scripts',
-  'lint:scripts'
+  'lint:scripts',
+  'make:scripts'
 ));

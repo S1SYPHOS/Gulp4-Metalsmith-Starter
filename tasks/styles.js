@@ -15,21 +15,17 @@ var
   syntax_scss     = require('postcss-scss')
 ;
 
-var rev = require('gulp-rev');
 /*
  * gulp lint:styles - lints styles using stylelint (config under stylelint in package.json)
+ * For more options, see http://stylelint.io/user-guide/example-config/
  */
 
 gulp.task('lint:styles', function() {
 
   return gulp.src(config.assets.source + '/styles/**/*.scss', { since: gulp.lastRun('lint:styles') })
-    // .pipe(plumber({ errorHandler: onError }))
     .pipe(postcss([
-      // For more options, see http://stylelint.io/user-guide/example-config/
       stylelint(),
-      reporter({
-        clearMessages: true
-      })
+      reporter({ clearMessages: true })
     ], { syntax: syntax_scss }))
   ;
 });
@@ -38,20 +34,16 @@ gulp.task('lint:styles', function() {
 /*
  * gulp styles -
  */
+
 gulp.task('make:styles', function() {
 
   var onError = function(err) {
-    notify.onError({
-      title:    'Gulp',
-      subtitle: 'Failure!',
-      message:  'Error: <%= error.message %>',
-      sound:    'Beep'
-    })(err);
+    console.log(err);
     this.emit('end');
   };
 
   return gulp.src(config.assets.source + '/styles/*.scss')
-    .pipe(plumber({ errorHandler: config.styles.onError }))
+    .pipe(plumber({ errorHandler: onError }))
     .pipe(sass({
       precision: 10, // https://github.com/sass/sass/issues/1122
       includePaths: config.styles.include
@@ -63,14 +55,11 @@ gulp.task('make:styles', function() {
     .pipe(size({ gzip: true, showFiles: true }))
     .pipe(gulpif(!config.envDev, rev()))
     .pipe(gulp.dest(config.assets.build + '/styles'))
-    .pipe(gulpif(config.envDev, gulp.dest(config.paths.build + '/assets/styles')))
-    .pipe(gulpif(!config.envDev, rev.manifest('_data/manifest.json', { base: '_data', merge: true })))
-    .pipe(gulpif(!config.envDev, gulp.dest('_data')))
     .pipe(browserSync.stream())
   ;
 });
 
 gulp.task('styles', gulp.series(
-  'make:styles',
-  'lint:styles'
+  'lint:styles',
+  'make:styles'
 ));

@@ -1,11 +1,7 @@
 var
-  // cache            = require('gulp-cached'), // ??
-  // changed          = require('gulp-changed'), // ??
-  // config           = require('../jekyllsmith.config.js'),
   exec            = require('child_process').exec,
   gulp            = require('gulp')
 ;
-
 
 /*
  * gulp html -
