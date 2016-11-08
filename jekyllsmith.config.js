@@ -1,5 +1,5 @@
 var
-  envDev        = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
+  envDev        = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production')
 ;
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
       baseurl: '',
       author: 'S1SYPHOS',
       email: 'hello@twobrain.io',
-      github_repo: 'gulp-metalsmith-starter-jekyllsmith', // ought to be changed?
+      github_repo: 'https://github.com/S1SYPHOS/Gulp_v4-Metalsmith-Starter',
       twitter: 'twobrain_frontend',
       version: '0.1.0'
     }

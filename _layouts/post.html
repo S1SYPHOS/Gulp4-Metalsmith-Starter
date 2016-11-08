@@ -4,7 +4,7 @@
 
   <div class="post">
     <h1 class="post-title">{{ title }}</h1>
-    <span class="post-date">{{ date | date }}</span>
+    <span class="post-date">{{ date | date('d M Y') }}</span>
     {{ contents | safe }}
   </div>
 
@@ -18,7 +18,7 @@
           <a href="{{ site.baseurl }}/{{ post.path }}">
             {{ post.title }}
           </a>
-          <small>{{ post.date | date }}</small>
+          <small>{{ post.date | date('d M Y') }}</small>
         </h3>
       </li>
       {% endfor %}

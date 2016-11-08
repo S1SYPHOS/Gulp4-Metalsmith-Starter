@@ -18,18 +18,6 @@ var
 ;
 
 /*
- * Nunjucks - A rich and powerful templating language for JavaScript
- * For more information, see https://mozilla.github.io/nunjucks/
- */
-
-var nunjucks = require('nunjucks');
-var dateFilter = require('nunjucks-date-filter');
-var env = nunjucks.configure('./_layouts', { watch: false });
-dateFilter.setDefaultFormat('DD MMM YYYY');
-env.addFilter('date', dateFilter);
-
-
-/*
  * Building Metalsmith - An extremely simple, pluggable static site generator
  * For more information, see http://www.metalsmith.io/
  */
@@ -51,12 +39,15 @@ ms.use(related({
   max: 3,
   pattern: 'posts/*.md'
 }))
-ms.use(metallic())
-ms.use(markdown())
+ms.use(markdown({
+  // https://github.com/chjj/marked#highlight
+  highlight: function (code) {
+    return require('highlight.js').highlightAuto(code).value;
+  }
+}))
 ms.use(excerpts({ stripTags: false }))
 .use(permalinks({
   pattern: ':title',
-  // date: 'YYYY/MM',
   linksets: [{
     match: { collection: 'posts' },
     pattern: 'posts/:title',
@@ -64,13 +55,13 @@ ms.use(excerpts({ stripTags: false }))
 }))
 if (!config.envDev) ms.use(fingerprint({ pattern: ['assets/styles/*.css', 'assets/scripts/*.js'] }))
 ms.use(layouts({
-  engine: 'nunjucks',
+  engine: 'swig',
   default: 'post.html',
   directory: '_layouts',
   pattern: '**/*.html'
 }))
 ms.use(inplace({
-  engine: 'nunjucks',
+  engine: 'swig',
   pattern: '**/*.html'
 }))
 if (!config.envDev) ms.use(htmlmin(config.html.minify))

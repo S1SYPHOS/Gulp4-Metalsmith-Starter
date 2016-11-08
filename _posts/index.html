@@ -11,7 +11,7 @@ permalink: false
       {{ post.title }}
     </a>
   </h1>
-  <span class="post-date">{{ post.date | date }}</span>
+  <span class="post-date">{{ post.date | date('d M Y') }}</span>
   {{ post.excerpt | safe }}
 </div>
 {% endfor %}
