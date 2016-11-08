@@ -4,7 +4,6 @@ var
   gulp            = require('gulp'),
   gulpif          = require('gulp-if'),
   minify          = require('gulp-clean-css'),
-  notify          = require('gulp-notify');
   plumber         = require('gulp-plumber'),
   postcss         = require('gulp-postcss'),
   prefix          = require('autoprefixer'),
@@ -53,7 +52,6 @@ gulp.task('make:styles', function() {
     ]))
     .pipe(gulpif(!config.envDev, minify()))
     .pipe(size({ gzip: true, showFiles: true }))
-    .pipe(gulpif(!config.envDev, rev()))
     .pipe(gulp.dest(config.assets.build + '/styles'))
     .pipe(browserSync.stream())
   ;
