@@ -1,6 +1,4 @@
 var
-  fs            = require('fs'),
-  manifest      = JSON.parse(fs.readFileSync('_data/manifest.json'))
   envDev        = ((process.env.NODE_ENV || '').trim().toLowerCase() !== 'production'),
 ;
 
@@ -15,9 +13,9 @@ module.exports = {
       baseurl: '',
       author: 'S1SYPHOS',
       email: 'hello@twobrain.io',
-      github_repo: 'gulp-metalsmith-starter-jekyllsmith',
+      github_repo: 'gulp-metalsmith-starter-jekyllsmith', // ought to be changed?
       twitter: 'twobrain_frontend',
-      version: '0.1'
+      version: '0.1.0'
     }
   },
   paths: {

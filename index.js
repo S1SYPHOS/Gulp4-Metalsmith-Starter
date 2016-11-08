@@ -4,7 +4,7 @@ var
   collections  = require('metalsmith-collections'),
   excerpts     = require('./_resources/libraries/metalsmith-better-excerpts'),
   feed         = config.envDev ? null : require('metalsmith-feed-atom'),
-  // fingerprint   = config.envDev ? null : require('metalsmith-fingerprint')
+  fingerprint  = config.envDev ? null : require('metalsmith-fingerprint'),
   htmlmin      = config.envDev ? null : require('metalsmith-html-minifier'),
   inplace      = require('metalsmith-in-place'),
   layouts      = require('metalsmith-layouts'),
@@ -62,7 +62,7 @@ ms.use(excerpts({ stripTags: false }))
     pattern: 'posts/:title',
   }]
 }))
-// if (!config.envDev) ms.use(fingerprint({ pattern: ['assets/styles/*.css', 'assets/scripts/*.js'] }))
+if (!config.envDev) ms.use(fingerprint({ pattern: ['assets/styles/*.css', 'assets/scripts/*.js'] }))
 ms.use(layouts({
   engine: 'nunjucks',
   default: 'post.html',
