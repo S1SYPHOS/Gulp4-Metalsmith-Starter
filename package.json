@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Gulp v4 - Metalsmith - Starter",
   "author": "S1SYPHOS <hello@twobrain.io>",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/S1SYPHOS/Gulp_v4-Metalsmith-Starter"
