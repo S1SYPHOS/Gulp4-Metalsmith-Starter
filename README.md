@@ -10,8 +10,8 @@ For those well acquainted with [Jekyll](http://jekyllrb.com/), folder structure 
 This starter also features a number of great software (in the words of their creators):
 - [Lanyon](http://lanyon.getpoole.com/) - a content-first, sliding sidebar theme (originally) for Jekyll (by [mdo](http://mdo.fm))
 - [Browsersync](https://www.browsersync.io/) - time-saving synchronised browser testing (once you go live-reload, you'll never come back)
-- [Sass](http://sass-lang.com/) - CSS with superpowers
-  - [PostCSS] - a tool for transforming styles with JS plugins
+- [Sass](http://sass-lang.com/) - CSS with superpowers (could be removed in favor of PostCSS altogether, see [this post](https://benfrain.com/breaking-up-with-sass-postcss))
+  - [PostCSS](https://github.com/postcss/postcss) - a tool for transforming styles with JS plugins
   - [Autoprefixer](https://github.com/postcss/autoprefixer) - adding vendor prefixes by the rules of [Can I Use](http://caniuse.com/)
 - [Stylelint](http://stylelint.io/) - a mighty, modern CSS linter (with preconfigured ruleset by [Hugo Giraudel](https://sass-guidelin.es/))
 - [Webpack](https://webpack.github.io/) - a bundler for javascript and friends
@@ -39,7 +39,7 @@ Everything's ready to get started right away - here's my Gulp workflow:
   - compiles & builds everything
   - minifies & compresses everything
 - `npm run debug` - Runs Metalsmith script with debugging option enabled
-Additional npm scripts can be found inside `package.json` (such as serving the site with production settings).
+Additional npm scripts can be found inside `package.json` (such as serving the site with production settings). For those in need of a more lightweight solution, just modify templates, add some content and/or drop assets into `_posts/assets`, then run `node ./index.js` to build the site (which could then be served with `gulp server`).
 
 ## Contributing
 
