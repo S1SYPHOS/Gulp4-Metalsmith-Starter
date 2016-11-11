@@ -15,7 +15,7 @@ module.exports = {
       email: 'hello@twobrain.io',
       github_repo: 'https://github.com/S1SYPHOS/Gulp_v4-Metalsmith-Starter',
       twitter: 'twobrain_frontend',
-      version: '0.1.0'
+      version: '0.2.0'
     }
   },
   paths: {

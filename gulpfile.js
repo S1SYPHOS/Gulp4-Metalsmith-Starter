@@ -1,39 +1,32 @@
 'use strict';
 
 var
-  browserSync  = require('browser-sync').create(),
-  cache    = require('gulp-memory-cache'),
-  changed    = require('gulp-changed'),
-  concat     = require('gulp-concat'),
-  config     = require('./config'),
-  eslint     = require('gulp-eslint'),
-  exec    = require('child_process').exec,
-  gulp    = require('gulp'),
-  gulpif     = require('gulp-if'),
-  imagemin    = require('gulp-imagemin'),
-  minify     = require('gulp-clean-css'),
-  named    = require('vinyl-named'),
-  plumber    = require('gulp-plumber'),
-  pngquant    = require('imagemin-pngquant'),
-  postcss    = require('gulp-postcss'),
-  prefix     = require('autoprefixer'),
-  reporter    = require('postcss-reporter'),
-  sass    = require('gulp-sass'),
-  size    = require('gulp-size'),
-  stylelint   = require('stylelint'),
-  syntax_scss  = require('postcss-scss'),
-  uglify     = require('gulp-uglify'),
-  webpack    = require('webpack-stream'),
-  wp      = require('webpack')
+  browserSync   = require('browser-sync').create(),
+  cache         = require('gulp-memory-cache'),
+  changed       = require('gulp-changed'),
+  concat        = require('gulp-concat'),
+  config        = require('./config'),
+  eslint        = require('gulp-eslint'),
+  exec          = require('child_process').exec,
+  gulp          = require('gulp'),
+  gulpif        = require('gulp-if'),
+  imagemin      = require('gulp-imagemin'),
+  minify        = require('gulp-clean-css'),
+  named         = require('vinyl-named'),
+  plumber       = require('gulp-plumber'),
+  pngquant      = require('imagemin-pngquant'),
+  postcss       = require('gulp-postcss'),
+  prefix        = require('autoprefixer'),
+  reporter      = require('postcss-reporter'),
+  sass          = require('gulp-sass'),
+  size          = require('gulp-size'),
+  stylelint     = require('stylelint'),
+  syntax_scss   = require('postcss-scss'),
+  uglify        = require('gulp-uglify'),
+  webpack       = require('webpack-stream'),
+  wp            = require('webpack')
 ;
 
-
-
-/*
- *
- * `gulp -T` - tree view of all available tasks
- *
- */
 
 
 // STYLES
@@ -89,9 +82,9 @@ gulp.task('styles', gulp.series(
 
 // SCRIPTS
 
- /*
-  * `gulp lint:scripts` - lints javascript using eslint & caches results (config under eslintConfig in package.json)
-  */
+/*
+ * `gulp lint:scripts` - lints javascript using eslint & caches results (config under eslintConfig in package.json)
+ */
 
 gulp.task('lint:scripts', function() {
   return gulp.src(config.assets.source + '/scripts/**/*.js', { since: gulp.lastRun('lint:scripts') })
@@ -167,10 +160,15 @@ gulp.task('images', function () {
 // FONTS
 
 /*
- * `gulp watch`
- *
- * On changes, html + assets are recompiled & injected
- *
+ * coming soon ...
+ */
+
+
+
+// WATCH TASKS
+
+/*
+ * `gulp watch` - watches for changes, recompiles & injects html + assets
  */
 
 gulp.task('watch:styles', function() {
@@ -217,7 +215,10 @@ gulp.task('watch', gulp.parallel(
   'watch:code'
 ));
 
-// Core tasks
+
+
+// GENERAL TASKS
+
 gulp.task('assets', gulp.parallel(
   'styles',
   'scripts',
