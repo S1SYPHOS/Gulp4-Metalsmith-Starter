@@ -31,8 +31,8 @@ module.exports = {
   },
   server: {
     port: 4000,
-    notify: false,
-    open: false
+    notify: true,
+    open: true
   },
   envDev,
   styles: {

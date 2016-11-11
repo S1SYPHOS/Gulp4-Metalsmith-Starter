@@ -1,8 +1,8 @@
 var
-  config       = require('./jekyllsmith.config'),
+  config       = require('./config'),
   dates        = require('metalsmith-jekyll-dates'),
   collections  = require('metalsmith-collections'),
-  excerpts     = require('./_resources/libraries/metalsmith-better-excerpts'),
+  excerpts     = require('metalsmith-better-excerpts'),
   feed         = config.envDev ? null : require('metalsmith-feed-atom'),
   fingerprint  = config.envDev ? null : require('metalsmith-fingerprint'),
   htmlmin      = config.envDev ? null : require('metalsmith-html-minifier'),
@@ -39,12 +39,8 @@ ms.use(related({
   max: 3,
   pattern: 'posts/*.md'
 }))
-ms.use(markdown({
-  // https://github.com/chjj/marked#highlight
-  highlight: function (code) {
-    return require('highlight.js').highlightAuto(code).value;
-  }
-}))
+ms.use(metallic())
+ms.use(markdown())
 ms.use(excerpts({ stripTags: false }))
 .use(permalinks({
   pattern: ':title',

@@ -13,8 +13,8 @@ Poole is the Jekyll Butler, serving as an upstanding and effective foundation fo
 - Easily scalable text and component sizing with `rem` units in the CSS
 - Support for a wide gamut of HTML elements
 - Related posts (time-based, because Jekyll) below each post
-- Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)
-
+- Syntax highlighting,  Pygments (the Python-based code snippet highlighter)
+<!-- more -->
 ### Lanyon features
 
 In addition to the features of Poole, Lanyon adds the following:
@@ -35,4 +35,3 @@ Lanyon is by preference a forward-thinking project. In addition to the latest ve
 Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.
 
 Thanks!
-<!-- more -->
