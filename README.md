@@ -10,13 +10,13 @@ For those well acquainted with [Jekyll](http://jekyllrb.com/), folder structure 
 This starter also features a number of great software (in the words of their creators):
 - [Lanyon](http://lanyon.getpoole.com/) - a content-first, sliding sidebar theme (originally) for Jekyll (by [mdo](http://mdo.fm))
 - [Browsersync](https://www.browsersync.io/) - time-saving synchronised browser testing (once you go live-reload, you'll never come back)
-- [Sass](http://sass-lang.com/) - CSS with superpowers (could be removed in favor of PostCSS altogether, see [this post](https://benfrain.com/breaking-up-with-sass-postcss))
-  - [PostCSS](https://github.com/postcss/postcss) - a tool for transforming styles with JS plugins
-  - [Autoprefixer](https://github.com/postcss/autoprefixer) - adding vendor prefixes by the rules of [Can I Use](http://caniuse.com/)
+- [Sass](http://sass-lang.com/) - CSS with superpowers
+- [PostCSS](https://github.com/postcss/postcss) - a tool for transforming styles with JS plugins
+- [Autoprefixer](https://github.com/postcss/autoprefixer) - adding vendor prefixes by the rules of [Can I Use](http://caniuse.com/)
 - [Stylelint](http://stylelint.io/) - a mighty, modern CSS linter (with preconfigured ruleset by [Hugo Giraudel](https://sass-guidelin.es/))
 - [Webpack](https://webpack.github.io/) - a bundler for javascript and friends
 - [ESLint](http://eslint.org/) - the pluggable linting utility for JavaScript and JSX (with preconfigured ruleset by [Google](https://github.com/google/eslint-config-google))
-- [Swig](https://github.com/paularmstrong/swig) - an awesome, Django/Jinja-like template engine for node.js (which is similar to Jekyll's [Liquid](http://shopify.github.io/liquid/), but feel free to use another one)
+- [Swig](https://github.com/paularmstrong/swig) - an awesome, Django/Jinja-like template engine for node.js (similar to Jekyll's [Liquid](http://shopify.github.io/liquid/), but feel free to use another one, because Metalsmith!)
 
 ## Getting started
 Make sure [Node.js](http://nodejs.org/) is installed on your system, then clone this repository and install its dependencies via [NPM](https://npmjs.org/):
@@ -30,17 +30,18 @@ $ npm start
 
 ### Workflow
 Everything's ready to get started right away - here's my Gulp workflow:
+
 `npm start` - Compiles assets & html, launches development server:
 - compiles styles & scripts are being compiled & concatenated
 - compresses images
 - builds the site & opens it in your default browser
 - watches for changes and injects them right away
-`npm run build` - Compiles assets & html with production settings:
+`npm run build` - Same as above, but in production mode:
 - compiles & builds everything
 - minifies & compresses everything
-`npm run debug` - Runs Metalsmith script with debugging option enabled
+`npm run deploy` - Same as above, plus everything's being pushed to your repositories' `gh-pages` branch
 
-Additional npm scripts can be found inside `package.json` (such as serving the site with production settings). For those in need of a more lightweight solution, just modify templates, add some content and/or drop assets into `_posts/assets`, then run `node ./index.js` to build the site (which could then be served with `gulp server`).
+Additional npm scripts can be found inside `package.json` (such as serving the site with production settings or debug mode). For those in need of a more lightweight solution, just modify templates, add some content and/or drop assets into `_posts/assets`, then run `node ./index.js` to build the site (which could then be served with `gulp server`).
 
 ### Configuration
 Global variables and site metadata can be found inside `config.js`. Metalsmith's build process resides in `index.js`. Static assets such as (S)CSS or JS files as well as fonts and images are located inside `_resources`, posts and pages in their respective folders inside `_posts`. If something doesn't suit your needs, just make it so, and if you stumble across something worth sharing, then think about ..

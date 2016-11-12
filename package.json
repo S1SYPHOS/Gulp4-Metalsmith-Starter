@@ -19,6 +19,7 @@
   "scripts": {
     "start": "gulp",
     "build": "NODE_ENV=production gulp build",
+    "deploy": "NODE_ENV=production gulp build && gulp deploy",
     "stage": "NODE_ENV=production gulp",
     "debug": "DEBUG=metalsmith* node ./index.js",
     "devel": "gulp build",
