@@ -10,7 +10,7 @@ module.exports = {
       tagline: 'Jekyll-like Metalsmith',
       description: 'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.',
       url: envDev ? 'localhost:4000' : 'https://S1SYPHOS.github.io',
-      baseurl: envDev ? '' : 'Gulp4-Metalsmith-Starter',
+      baseurl: envDev ? '' : '/Gulp4-Metalsmith-Starter', // sub-directory, eg name.github.io/sub-directory
       author: 'S1SYPHOS',
       email: 'hello@twobrain.io',
       github_repo: 'https://github.com/S1SYPHOS/Gulp4-Metalsmith-Starter',
