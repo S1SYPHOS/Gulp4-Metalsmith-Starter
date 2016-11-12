@@ -3,27 +3,18 @@ title: About
 layout: page.html
 ---
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  The Gulp4-Metalsmith-Starter's default theme is Lanyon, originally developed as [Jekyll](http://jekyllrb.com) theme by [@mdo](https://twitter.com/mdo), that I ported over for use with [Metalsmith](http://metalsmith.io).
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+It comes with many great features, including:
 
-There are currently two themes built on Poole:
+- Mobile friendly design and development
+- Easily scalable text and component sizing with `rem` units in the CSS
+- Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
+- [Eight optional color schemes](https://github.com/poole/lanyon#themes), available via `<body>` classes
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+Find out more about Lanyon by [visiting the project on GitHub](https://github.com/poole/lanyon).
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+### Browser support
 
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.
