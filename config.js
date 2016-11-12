@@ -13,7 +13,7 @@ module.exports = {
       baseurl: '',
       author: 'S1SYPHOS',
       email: 'hello@twobrain.io',
-      github_repo: 'https://github.com/S1SYPHOS/Gulp_v4-Metalsmith-Starter',
+      github_repo: 'https://github.com/S1SYPHOS/Gulp4-Metalsmith-Starter',
       twitter: 'twobrain_frontend',
       version: '0.2.0'
     }

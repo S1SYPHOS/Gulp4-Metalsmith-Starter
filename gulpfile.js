@@ -8,6 +8,7 @@ var
   config        = require('./config'),
   eslint        = require('gulp-eslint'),
   exec          = require('child_process').exec,
+  ghPages       = require('gulp-gh-pages'),
   gulp          = require('gulp'),
   gulpif        = require('gulp-if'),
   imagemin      = require('gulp-imagemin'),
@@ -143,15 +144,14 @@ gulp.task('scripts', gulp.series(
 
 gulp.task('images', function () {
   return gulp.src(config.assets.source + '/images/**/*')
-   .pipe(plumber())
    .pipe(changed(config.assets.build + '/images'))
    .pipe(imagemin({
-  progressive: true,
-  svgoPlugins: [{ removeViewBox: false }],
-  use: [pngquant()]
+      progressive: true,
+      use: [pngquant()]
    }))
    .pipe(size({ showFiles: true }))
    .pipe(gulp.dest(config.assets.build + '/images'))
+   .pipe(browserSync.stream())
   ;
 });
 
@@ -160,9 +160,51 @@ gulp.task('images', function () {
 // FONTS
 
 /*
- * coming soon ...
+ * `gulp fonts`
  */
 
+gulp.task('fonts', function () {
+  return gulp.src(config.assets.source + '/fonts/**/*')
+    .pipe(changed(config.assets.build + '/fonts'))
+    .pipe(gulp.dest(config.assets.build + '/fonts'))
+    .pipe(browserSync.stream())
+  ;
+});
+
+
+
+// HTML
+
+/*
+ * `gulp html` - runs the Metalsmith build script to build the site
+ */
+
+gulp.task('html', function (cb) {
+  exec('node ./index.js', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+})
+
+
+
+// SERVER
+
+/*
+ * gulp server - starts a local development server
+ */
+
+gulp.task('server', function() {
+ browserSync.init({
+   server: {
+     baseDir: config.paths.build,
+   },
+   port: config.server.port,
+   notify: config.server.notify,
+   open: config.server.open
+ });
+});
 
 
 // WATCH TASKS
@@ -214,6 +256,19 @@ gulp.task('watch', gulp.parallel(
   'watch:images',
   'watch:code'
 ));
+
+
+
+// DEPLOY
+
+/*
+ * `gulp deploy` - pushes site content onto a remote repository
+ */
+
+ gulp.task('deploy', function() {
+   return gulp.src(config.paths.build + '/**/*')
+     .pipe(ghPages());
+ });
 
 
 

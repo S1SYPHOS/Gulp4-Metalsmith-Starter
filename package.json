@@ -24,7 +24,9 @@
     "devel": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gulp-gh-pages": "^0.5.4"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "browser-sync": "^2.17.5",
