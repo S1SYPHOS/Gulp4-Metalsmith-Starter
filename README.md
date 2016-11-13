@@ -36,9 +36,11 @@ Everything's ready to get started right away - here's my Gulp workflow:
 - compresses images
 - builds the site & opens it in your default browser
 - watches for changes and injects them right away
+
 `npm run build` - Same as above, but in production mode:
 - compiles & builds everything
 - minifies & compresses everything
+
 `npm run deploy` - Same as above, plus everything's being pushed to your repositories' `gh-pages` branch
 
 Additional npm scripts can be found inside `package.json` (such as serving the site with production settings or debug mode). For those in need of a more lightweight solution, just modify templates, add some content and/or drop assets into `_posts/assets`, then run `node ./index.js` to build the site (which could then be served with `gulp server`).
